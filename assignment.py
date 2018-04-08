@@ -10,7 +10,7 @@ if not os.path.exists('./coinapi.json'):
     my_file = open('coinapi.json', 'w')
     my_file.write(response.text)
     my_file.close()
-    my_file = response.json
+    my_file = json.loads(response.json)
 else:
     my_file = open('coinapi.json')
     my_file = json.loads(my_file.read())
@@ -39,6 +39,11 @@ def question3():
             count[el['taker_side']] = 1
     print('the most favoured transaction type is {}'.format(max(count.items(), key=operator.itemgetter(1))[0]))
 
+def question5():
+    total_volume = sum([el['size'] for el in my_file])
+    print('total volume per day is {}'.format(total_volume))
+
 question1()
 question2()
 question3()
+question5()
