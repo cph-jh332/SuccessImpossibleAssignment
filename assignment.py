@@ -10,7 +10,7 @@ if not os.path.exists('./coinapi.json'):
     my_file = open('coinapi.json', 'w')
     my_file.write(response.text)
     my_file.close()
-    my_file = json.loads(response.json)
+    my_file = json.loads(response.text)
 else:
     my_file = open('coinapi.json')
     my_file = json.loads(my_file.read())
