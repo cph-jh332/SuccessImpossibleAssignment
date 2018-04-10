@@ -2,6 +2,7 @@ import requests
 import os.path
 import json
 import operator
+from collections import Counter
 
 if not os.path.exists('./coinapi.json'):
     headers = {'X-CoinAPI-Key' : '91562386-7363-47E2-837B-C1FFF6F8A95E'}
@@ -31,12 +32,7 @@ def question2():
     print('the average price pr transaction is {}'.format(average_price))
 
 def question3():
-    count = {}
-    for el in my_file:
-        if el['taker_side'] in count:
-            count[el['taker_side']] += 1
-        else:
-            count[el['taker_side']] = 1
+    count = Counter([el['taker_side'] for el in my_file])
     print('the most favoured transaction type is {}'.format(max(count.items(), key=operator.itemgetter(1))[0]))
 
 def question5():
